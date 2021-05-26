@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	pb "github.com/buzzology/go-microservices-tutorial/shippy-service-vessel/proto/vessel"
+	pb "github.com/buzzology/shippy-service-vessel/proto/vessel"
 	micro "github.com/micro/go-micro/v2"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	service := micro.NewService(micro.Name("shippy.service.vessel"))
 	service.Init()
 
-	uri := os.GetEnv("DB_HOST")
+	uri := os.Getenv("DB_HOST")
 	if uri == "" {
 		uri = defaultHost
 	}

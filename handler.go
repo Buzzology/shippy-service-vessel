@@ -2,14 +2,14 @@ package main
 
 import (
 	"context"
-	pb "github.com/buzzology/shippy-service-vessel/proto/vessel"
+	pb "github.com/Buzzology/shippy-service-vessel/proto/vessel"
 )
 
 type handler struct {
 	repository
 }
 
-func (s *handler) CreateVessel(ctx context.Context, req *pb.Vessel, res *pb.Response) error {
+func (s *handler) Create(ctx context.Context, req *pb.Vessel, res *pb.Response) error {
 
 	// Save
 	if err := s.repository.Create(ctx, MarshalVessel(req)); err != nil {

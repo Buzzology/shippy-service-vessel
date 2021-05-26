@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	pb "github.com/buzzology/shippy-service-vessel/proto/vessel"
+	pb "github.com/Buzzology/shippy-service-vessel/proto/vessel"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 )

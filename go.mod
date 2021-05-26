@@ -1,10 +1,10 @@
-module github.com/buzzology/shippy-service-vessel
+module github.com/Buzzology/shippy-service-vessel
 
 go 1.16
 
 replace google.golang.org/grpc v1.38.0 => google.golang.org/grpc v1.26.0
 
-// replace github.com/buzzology/shippy-service-vessel => ../shippy-service-vessel
+// replace github.com/Buzzology/shippy-service-vessel => ../shippy-service-vessel
 
 require (
 	github.com/golang/protobuf v1.5.2

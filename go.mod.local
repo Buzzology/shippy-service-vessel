@@ -1,10 +1,10 @@
-module github.com/buzzology/go-microservices-tutorial/shippy-service-vessel
+module github.com/Buzzology/go-microservices-tutorial/shippy-service-vessel
 
 go 1.16
 
-replace github.com/buzzology/go-microservices-tutorial/shippy-service-consignment => ../shippy-service-consignment
+replace github.com/Buzzology/go-microservices-tutorial/shippy-service-consignment => ../shippy-service-consignment
 
-replace github.com/buzzology/go-microservices-tutorial/shippy-service-vessel => ../shippy-service-vessel
+replace github.com/Buzzology/go-microservices-tutorial/shippy-service-vessel => ../shippy-service-vessel
 
 require (
 	github.com/golang/protobuf v1.5.2

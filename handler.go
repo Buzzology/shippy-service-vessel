@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	pb "github.com/buzzology/shippy-service-vessel/proto/vessel"
-	"github.com/pkg/errors"
 )
 
 type handler struct {
@@ -13,7 +12,7 @@ type handler struct {
 func (s *handler) CreateVessel(ctx context.Context, req *pb.Vessel, res *pb.Response) error {
 
 	// Save
-	if err := repository.Create(s.repository, ctx); err != nil {
+	if err := s.repository.Create(ctx, MarshalVessel(req)); err != nil {
 		return err
 	}
 
@@ -31,6 +30,6 @@ func (s *handler) FindAvailable(ctx context.Context, req *pb.Specification, res 
 		return err
 	}
 
-	res.Vessel = UnmarshalVessel(&vessel)
+	res.Vessel = UnmarshalVessel(vessel)
 	return nil
 }

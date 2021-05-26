@@ -1,4 +1,4 @@
-module github.com/buzzology/go-microservices-tutorial/shippy-service-vessel/v0.2
+module github.com/buzzology/go-microservices-tutorial/shippy-service-vessel
 
 go 1.16
 

@@ -3,13 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"os"
 	pb "github.com/Buzzology/shippy-service-vessel/proto/vessel"
 	micro "github.com/micro/go-micro/v2"
+	"log"
+	"os"
 )
 
-const defaultHost = "datastore:27017"
+const defaultHost = "mongodb://localhost:27017"
 
 func main() {
 
@@ -34,6 +34,7 @@ func main() {
 	vesselCollection := client.Database("shippy").Collection("vessels")
 	repository := &MongoRepository{vesselCollection}
 	h := &handler{repository}
+	populateDb(repository)
 
 	// Register handlers
 	if err := pb.RegisterVesselServiceHandler(service.Server(), h); err != nil {
@@ -48,5 +49,15 @@ func main() {
 	// Run the server
 	if err := service.Run(); err != nil {
 		log.Panic(err)
+	}
+}
+
+func populateDb(repo repository) {
+	vessels := []*Vessel{
+		{ID: "vessel001", Name: "Kane's Salty Secret", MaxWeight: 200000, Capacity: 500},
+	}
+
+	for _, v := range vessels {
+		repo.Create(context.Background(), v)
 	}
 }

@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"fmt"
+
 	pb "github.com/Buzzology/shippy-service-vessel/proto/vessel"
 )
 
@@ -27,6 +29,7 @@ func (s *handler) FindAvailable(ctx context.Context, req *pb.Specification, res 
 	// Save
 	vessel, err := s.repository.FindAvailable(ctx, MarshalSpecification(req));
 	if err != nil {
+		fmt.Print(err)
 		return err
 	}
 

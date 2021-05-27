@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	pb "github.com/Buzzology/shippy-service-vessel/proto/vessel"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type repository interface {
@@ -88,17 +88,22 @@ func (repository *MongoRepository) Create(ctx context.Context, vessel *Vessel) e
 	return err
 }
 
+
 func (repository *MongoRepository) FindAvailable(ctx context.Context, spec *Specification) (*Vessel, error) {
 	filter := bson.D{{
 		"capacity",
-		bson.D{{
-			"$lte",
-			spec.Capacity,
-		}, {
-			"$lte",
-			spec.MaxWeight,
-		}},
-	}}
+			bson.D{{
+				"$gte",
+				spec.Capacity,
+			}},
+		},
+		{
+			"maxweight",
+			bson.D{{
+				"$gte",
+				spec.MaxWeight,
+			}},
+		}}
 
 	vessel := &Vessel{}
 	if err := repository.collection.FindOne(ctx, filter).Decode(vessel); err != nil {
